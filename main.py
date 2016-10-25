@@ -3,7 +3,7 @@ import struct
 import numpy as np
 import matplotlib.pyplot as plt
 
-chunk = 1024
+chunk = 735
 format = pyaudio.paInt16
 channels = 2
 rate = 44100
@@ -16,7 +16,12 @@ left = []
 right = []
 
 stream.read(chunk)
-frame = stream.read(chunk * 50)
+
+print 'Starting to record'
+
+frame = stream.read(chunk * 60)
+
+print 'Done recording'
 
 for i in xrange(0, len(frame), 4):
 	left.append(struct.unpack('<h', frame[i:i+2]))
